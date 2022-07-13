@@ -5,11 +5,20 @@
 body {
     background-color: ghostwhite;
     margin: 0;
+    overflow: hidden;
 }
 
 .home-wrapper {
     height: 100vh;
-    background-color: cadetblue;
+    width: 300vw;
+    position: absolute;
+    transition: 0.5s all;
+    display: flex;
+}
+
+.home-wrapper div {
+    height: 100%;
+    width: 33.3%;
 }
 
 .player-wrapper {
@@ -21,4 +30,6 @@ body {
     background-color: bisque;
     position: absolute;
     bottom: 0;
+    transition: 0.5s all;
+    transform: translateX(-50%);
 }
