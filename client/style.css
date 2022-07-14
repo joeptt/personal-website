@@ -10,15 +10,17 @@ body {
 
 .home-wrapper {
     height: 100vh;
-    width: 300vw;
     position: absolute;
     transition: 0.5s all;
     display: flex;
 }
 
-.home-wrapper div {
+.pages {
     height: 100%;
-    width: 33.3%;
+    width: 100vw;
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
 }
 
 .player-wrapper {
@@ -30,6 +32,18 @@ body {
     background-color: bisque;
     position: absolute;
     bottom: 0;
-    transition: 0.5s all;
+    transition: 0.5s all ease;
     transform: translateX(-50%);
+}
+
+.house {
+    width: 400px;
+    height: 400px;
+    background-color: crimson;
+}
+
+.test {
+    background-color: aqua;
+    height: 100%;
+    width: 100%;
 }
