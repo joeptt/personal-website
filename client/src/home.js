@@ -1,19 +1,52 @@
 import { useEffect, useState, useRef } from "react";
+import Name from "./name";
+import BIRDS from "vanta/dist/vanta.birds.min";
 
 export default function Home() {
+    const [vantaEffect, setVantaEffect] = useState(0);
+    const refPage1 = useRef(null);
     let [positionX, setPositionX] = useState(10);
     let [backgroundPositionX, setBackgroundPositionX] = useState(0);
     let [test, setTest] = useState("hidden");
     const refUser = useRef(null);
     const refHouse = useRef(null);
     const speed = 5;
-    const backGroundSpeed = 20;
+    const backGroundSpeed = 32;
 
     useEffect(() => {
         window.addEventListener("keydown", (event) => {
             moveUser(event.keyCode);
         });
+
+        // clean up evt list
     }, []);
+
+    useEffect(() => {
+        if (!vantaEffect) {
+            setVantaEffect(
+                BIRDS({
+                    el: refPage1.current,
+                    mouseControls: true,
+                    touchControls: true,
+                    gyroControls: false,
+                    minHeight: 200.0,
+                    minWidth: 200.0,
+                    scale: 1.0,
+                    scaleMobile: 1.0,
+                    backgroundColor: 0x0,
+                    colorMode: "lerpGradient",
+                    birdSize: 1.2,
+                    speedLimit: 4.0,
+                    separation: 50.0,
+                    alignment: 51.0,
+                    cohesion: 26.0,
+                })
+            );
+        }
+        return () => {
+            if (vantaEffect) vantaEffect.destroy();
+        };
+    }, [vantaEffect]);
 
     useEffect(() => {
         checkForBuilding();
@@ -60,13 +93,10 @@ export default function Home() {
                 style={{ left: `${backgroundPositionX}px` }}
                 className="home-wrapper"
             >
-                <div
-                    className="pages"
-                    style={{
-                        backgroundColor: "green",
-                    }}
-                ></div>
-                <div className="pages" style={{ backgroundColor: "yellow" }}>
+                <div ref={refPage1} className="page1">
+                    <Name></Name>
+                </div>
+                <div className="page2">
                     <div ref={refHouse} className="house">
                         <div
                             className="test"
@@ -74,10 +104,7 @@ export default function Home() {
                         ></div>
                     </div>
                 </div>
-                <div
-                    className="pages"
-                    style={{ backgroundColor: "blue" }}
-                ></div>
+                <div className="page3"></div>
             </div>
             <div
                 ref={refUser}

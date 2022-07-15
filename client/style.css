@@ -15,7 +15,69 @@ body {
     display: flex;
 }
 
-.pages {
+/* --- PAGE 1  --- */
+
+.name-job-wrapper {
+    display: flex;
+    align-items: flex-end;
+    justify-content: flex-end;
+    flex-direction: column;
+}
+
+.page1 {
+    height: 100%;
+    width: 100vw;
+    display: flex;
+    align-items: flex-start;
+    justify-content: flex-end;
+    background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
+    background-size: 400% 400%;
+    animation: gradient 15s ease infinite;
+}
+
+.page1 h1 {
+    font-family: "Oswald", sans-serif;
+    color: white;
+    margin: 20px 30px 0 0;
+    font-size: 150px;
+    font-weight: 700;
+}
+
+.page1 h2 {
+    color: white;
+    font-size: 30px;
+}
+.page1 h2:hover {
+    color: blue;
+    animation: bounce 1s;
+}
+
+.page1 h3 {
+    font-family: "Oswald", sans-serif;
+    margin: -30px 30px 0 0;
+    font-size: 30px;
+    color: white;
+}
+
+.page1 span {
+    transition: 0.5s all;
+    display: inline-block;
+}
+
+.page1 span:hover {
+    color: rgba(0, 255, 247, 0.6);
+    animation: bounce 1s ease-in-out;
+}
+
+.page2 {
+    height: 100%;
+    width: 100vw;
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+    background-color: black;
+}
+.page3 {
     height: 100%;
     width: 100vw;
     display: flex;
@@ -46,4 +108,42 @@ body {
     background-color: aqua;
     height: 100%;
     width: 100%;
+}
+
+/* ANIMATIONS */
+
+@keyframes bounce {
+    0% {
+        transform: scale(1, 1) translateY(0);
+    }
+    10% {
+        transform: scale(1.1, 0.9) translateY(0);
+    }
+    30% {
+        transform: scale(0.9, 1.1) translateY(-55px);
+    }
+    50% {
+        transform: scale(1.05, 0.95) translateY(0);
+    }
+    58% {
+        transform: scale(1, 1) translateY(-7px);
+    }
+    65% {
+        transform: scale(1, 1) translateY(0);
+    }
+    100% {
+        transform: scale(1, 1) translateY(0);
+    }
+}
+
+@keyframes gradient {
+    0% {
+        background-position: 0% 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+    100% {
+        background-position: 0% 50%;
+    }
 }
