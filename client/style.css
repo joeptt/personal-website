@@ -15,6 +15,83 @@ body {
     display: flex;
 }
 
+/* --- HAMBURGER MENUE */
+
+.hamburger-wrapper {
+    position: absolute;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    width: 100%;
+    background-color: rgba(0, 0, 0, 0.9);
+    z-index: 100;
+}
+
+.hamburger {
+    color: white;
+}
+
+.hamburger-icon {
+    position: absolute;
+    left: 20px;
+    top: 40px;
+    z-index: 101;
+}
+
+#menu_checkbox {
+    display: none;
+}
+
+label {
+    position: absolute;
+    top: 50%;
+    right: 0;
+    left: 0;
+    margin: 0 auto;
+    display: block;
+    width: 30px;
+    height: 30px;
+    transform: translateY(-50%);
+    transition: 0.3s ease transform;
+    cursor: pointer;
+}
+
+label div {
+    width: 6px;
+    height: 6px;
+    background-color: white;
+    margin-left: 0;
+    margin-bottom: 6px;
+    border-radius: 4px;
+    transition: 0.3s ease width, 0.3s ease margin-left, 0.3s ease margin-bottom,
+        0.3s ease background-color;
+}
+
+label div:first-child {
+    width: 22px;
+}
+
+label div:nth-child(2) {
+    width: 15px;
+}
+
+label div:last-child {
+    width: 30px;
+    margin-bottom: 0;
+}
+
+#menu_checkbox:checked + label {
+    transform: translateY(-50%) rotateZ(-90deg);
+}
+
+#menu_checkbox:checked + label div {
+    width: 6px;
+    margin-left: 12px;
+    margin-bottom: 3px;
+    background-color: #ffc107;
+}
+
 /* --- PAGE 1  --- */
 
 .name-job-wrapper {
@@ -30,15 +107,12 @@ body {
     display: flex;
     align-items: flex-start;
     justify-content: flex-end;
-    background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
-    background-size: 400% 400%;
-    animation: gradient 15s ease infinite;
 }
 
 .page1 h1 {
     font-family: "Oswald", sans-serif;
     color: white;
-    margin: 20px 30px 0 0;
+    margin: 0;
     font-size: 150px;
     font-weight: 700;
 }
@@ -120,7 +194,7 @@ body {
         transform: scale(1.1, 0.9) translateY(0);
     }
     30% {
-        transform: scale(0.9, 1.1) translateY(-55px);
+        transform: scale(0.9, 1.1) translateY(-35px);
     }
     50% {
         transform: scale(1.05, 0.95) translateY(0);
@@ -133,17 +207,5 @@ body {
     }
     100% {
         transform: scale(1, 1) translateY(0);
-    }
-}
-
-@keyframes gradient {
-    0% {
-        background-position: 0% 50%;
-    }
-    50% {
-        background-position: 100% 50%;
-    }
-    100% {
-        background-position: 0% 50%;
     }
 }

@@ -1,5 +1,6 @@
 import { useEffect, useState, useRef } from "react";
 import Name from "./name";
+import Hamburgermenu from "./hamburgemenu";
 import BIRDS from "vanta/dist/vanta.birds.min";
 
 export default function Home() {
@@ -94,7 +95,8 @@ export default function Home() {
                 className="home-wrapper"
             >
                 <div ref={refPage1} className="page1">
-                    <Name></Name>
+                    <Hamburgermenu />
+                    <Name />
                 </div>
                 <div className="page2">
                     <div ref={refHouse} className="house">
