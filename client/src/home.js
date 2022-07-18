@@ -1,6 +1,7 @@
 import { useEffect, useState, useRef } from "react";
 import Name from "./name";
 import Hamburgermenu from "./hamburgemenu";
+import Blitzdraw from "./blitzdraw";
 import BIRDS from "vanta/dist/vanta.birds.min";
 
 export default function Home() {
@@ -11,15 +12,18 @@ export default function Home() {
     let [test, setTest] = useState("hidden");
     const refUser = useRef(null);
     const refHouse = useRef(null);
-    const speed = 5;
-    const backGroundSpeed = 32;
+    const speed = 40;
+    const backGroundSpeed = 320;
 
     useEffect(() => {
+        document.body.classList.add("overflow-body");
         window.addEventListener("keydown", (event) => {
             moveUser(event.keyCode);
         });
 
-        // clean up evt list
+        return () => {
+            window.removeEventListener("keydown");
+        };
     }, []);
 
     useEffect(() => {
@@ -99,6 +103,7 @@ export default function Home() {
                     <Name />
                 </div>
                 <div className="page2">
+                    <Blitzdraw />
                     <div ref={refHouse} className="house">
                         <div
                             className="test"
