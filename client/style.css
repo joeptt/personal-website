@@ -2,8 +2,9 @@
     box-sizing: border-box;
 }
 
-body {
-    background-color: ghostwhite;
+body,
+html {
+    background-color: black;
     margin: 0;
 }
 
@@ -13,9 +14,11 @@ body {
 
 .home-wrapper {
     height: 100vh;
+    width: 400vw;
     position: absolute;
     transition: 0.5s all;
     display: flex;
+    overflow-x: hidden;
 }
 
 /* --- HAMBURGER MENUE */
@@ -191,10 +194,39 @@ label div:last-child {
     height: 100%;
     width: 100vw;
     display: flex;
-    align-items: flex-end;
+    align-items: flex-start;
     justify-content: center;
     background-color: black;
 }
+
+.blitzdraw-wrapper {
+    margin-top: 50px;
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+}
+
+.blitzdraw-wrapper video {
+    height: 480px;
+    width: 854px;
+}
+
+.blitzdraw-wrapper li {
+    font-family: helvetica;
+    font-size: 20px;
+    color: white;
+}
+
+.page2-description {
+    display: flex;
+    flex-direction: column;
+}
+
+.page2-description p {
+    color: white;
+}
+
+/* PLAYER */
 
 .player-wrapper {
     display: flex;
@@ -209,27 +241,26 @@ label div:last-child {
     transform: translateX(-50%);
 }
 
-.house {
-    width: 400px;
-    height: 400px;
-    background-color: crimson;
-}
-
-.test {
-    background-color: aqua;
-    height: 100%;
-    width: 100%;
-}
-
 /* PAGE 3 */
 
 .page3 {
     height: 100%;
     width: 100vw;
     display: flex;
-    align-items: flex-end;
+    align-items: flex-start;
     justify-content: center;
     background-color: black;
+}
+
+/* PAGE 4 */
+
+.page4 {
+    height: 100%;
+    width: 100vw;
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    border-right: 30px solid white;
 }
 
 /* PROJECTS */

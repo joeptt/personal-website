@@ -1,7 +1,9 @@
 import { useEffect, useState, useRef } from "react";
 import Name from "./name";
 import Hamburgermenu from "./hamburgemenu";
+import Facebook from "./facebook";
 import Blitzdraw from "./blitzdraw";
+import Hisham from "./hisham";
 import BIRDS from "vanta/dist/vanta.birds.min";
 
 export default function Home() {
@@ -53,11 +55,11 @@ export default function Home() {
         };
     }, [vantaEffect]);
 
-    useEffect(() => {
+    /* useEffect(() => {
         checkForBuilding();
-    }, [positionX, backgroundPositionX]);
+    }, [positionX, backgroundPositionX]); */
 
-    const checkForBuilding = () => {
+    /* const checkForBuilding = () => {
         const userX = refUser.current.getBoundingClientRect();
         const houseX = refHouse.current.getBoundingClientRect();
         if (userX.x - houseX.x > -200 && userX.x - houseX.x < 500) {
@@ -66,7 +68,7 @@ export default function Home() {
             return;
         }
         setTest("hidden");
-    };
+    }; */
 
     const moveUser = (key) => {
         if (key === 39) {
@@ -104,14 +106,19 @@ export default function Home() {
                 </div>
                 <div className="page2">
                     <Blitzdraw />
-                    <div ref={refHouse} className="house">
+                    {/* <div ref={refHouse} className="house">
                         <div
                             className="test"
                             style={{ visibility: test }}
                         ></div>
-                    </div>
+                    </div> */}
                 </div>
-                <div className="page3"></div>
+                <div className="page3">
+                    <Facebook />
+                </div>
+                <div className="page4">
+                    <Hisham />
+                </div>
             </div>
             <div
                 ref={refUser}
