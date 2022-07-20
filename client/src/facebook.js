@@ -19,9 +19,9 @@ export default function Blitzdraw() {
     const getVideo = useCallback(async () => {
         try {
             const response = await client.getEntries({
-                content_type: "videos",
+                content_type: "facebookClone",
             });
-            const responseData = response.items[0].fields.videos[0];
+            const responseData = response.items[0].fields.facebookClone;
             console.log(responseData);
             if (responseData) {
                 cleanUpData(responseData);

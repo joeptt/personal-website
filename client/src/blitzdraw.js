@@ -41,7 +41,16 @@ export default function Blitzdraw() {
                 </video>
             )}
             <div className="page2-description">
-                <p>Multiplayer drawing game</p>
+                <p>
+                    As final project of the 2022 Spiced Academy coding bootcamp,
+                    I chose to create a multiplayer drawing game. It allows
+                    players to join the page where they then are asked to enter
+                    their name. Once all players joined the game one player gets
+                    randomly selected to be the drawer. The drawer sees a word
+                    which he/she then has to draw while the others are trying to
+                    guess the correct word. The faster you guess the word, the
+                    more points you receive!{" "}
+                </p>
                 <ul>
                     <li>Created with react</li>
                     <li>created with sockets.io</li>
