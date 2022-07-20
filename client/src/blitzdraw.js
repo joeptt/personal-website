@@ -49,13 +49,26 @@ export default function Blitzdraw() {
                     randomly selected to be the drawer. The drawer sees a word
                     which he/she then has to draw while the others are trying to
                     guess the correct word. The faster you guess the word, the
-                    more points you receive!{" "}
+                    more points you receive!
                 </p>
+                <p>
+                    You can find the code on{" "}
+                    <a
+                        rel="noreferrer"
+                        target="_blank"
+                        href="https://github.com/joeptt/drawing-game"
+                    >
+                        Github
+                    </a>
+                </p>
+
                 <ul>
-                    <li>Created with react</li>
-                    <li>created with sockets.io</li>
-                    <li>Canvas</li>
-                    <li>Multiplayer</li>
+                    <li>created using React</li>
+                    <li>created using Socket.io</li>
+                    <li>created using Canvas</li>
+                    <li>created using Express</li>
+                    <li>optimized for Mobile</li>
+                    <li>deployed on Heroku</li>
                 </ul>
             </div>
         </div>

@@ -41,12 +41,21 @@ export default function Blitzdraw() {
                 </video>
             )}
             <div className="page2-description">
-                <p>Multiplayer drawing game</p>
+                <p>
+                    As first small project after the bootcamp I created a
+                    website for a hairdresser in Berlin Friedrichshain. I used
+                    Contentful so the owner can add, remove and edit the Images,
+                    Prices, and Informations displayed on the page. The owner
+                    didn’t want an appointment booking tool on his page, since
+                    he wants his customers to engage with him via WhatsApp, so I
+                    build in a feature that lets the user select a date and time
+                    which then opens WhatsApp on your device with a pre-written
+                    message including the entered date.{" "}
+                </p>
                 <ul>
-                    <li>Created with react</li>
-                    <li>created with sockets.io</li>
-                    <li>Canvas</li>
-                    <li>Multiplayer</li>
+                    <li>created with react</li>
+                    <li>deployed on Netlify</li>
+                    <li>using Contentful as CMS</li>
                 </ul>
             </div>
         </div>

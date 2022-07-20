@@ -196,7 +196,7 @@ label div:last-child {
     display: flex;
     align-items: flex-start;
     justify-content: center;
-    background-color: black;
+    background-color: #1d1d1d;
 }
 
 .blitzdraw-wrapper {
@@ -209,21 +209,25 @@ label div:last-child {
 .blitzdraw-wrapper video {
     height: 480px;
     width: 854px;
+    margin-right: 30px;
 }
 
 .blitzdraw-wrapper li {
     font-family: helvetica;
-    font-size: 20px;
+    font-size: 15px;
     color: white;
 }
 
 .page2-description {
     display: flex;
     flex-direction: column;
+    width: 30%;
 }
 
 .page2-description p {
     color: white;
+    font-size: 18px;
+    font-family: helvetica;
 }
 
 /* PLAYER */
@@ -241,6 +245,15 @@ label div:last-child {
     transform: translateX(-50%);
 }
 
+.speechbubble {
+    opacity: 0.8;
+    position: absolute;
+    height: 400px;
+    width: 400px;
+    top: -340px;
+    right: -300px;
+}
+
 /* PAGE 3 */
 
 .page3 {
@@ -249,7 +262,19 @@ label div:last-child {
     display: flex;
     align-items: flex-start;
     justify-content: center;
-    background-color: black;
+    background-color: #2c3333;
+}
+
+.page3-description {
+    display: flex;
+    flex-direction: column;
+    width: 30%;
+}
+
+.page3-description p {
+    color: white;
+    font-size: 18px;
+    font-family: helvetica;
 }
 
 /* PAGE 4 */
@@ -258,6 +283,7 @@ label div:last-child {
     height: 100%;
     width: 100vw;
     display: flex;
+    background-color: #3d3c42;
     align-items: flex-start;
     justify-content: center;
     border-right: 30px solid white;
@@ -281,6 +307,7 @@ label div:last-child {
 
 .project-info {
     color: white;
+    font-family: helvetica;
     display: flex;
     width: 40%;
     align-items: flex-start;
@@ -293,10 +320,6 @@ label div:last-child {
     object-fit: cover;
     height: 400px;
     width: 50%;
-}
-
-.page-projects-wrapper {
-    height: 80vh;
 }
 
 .back-button-projects {

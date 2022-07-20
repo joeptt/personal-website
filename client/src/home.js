@@ -8,23 +8,24 @@ import BIRDS from "vanta/dist/vanta.birds.min";
 
 export default function Home() {
     const [vantaEffect, setVantaEffect] = useState(0);
+    const [displaySpeechbubble, setDisplaySpeechbubble] = useState("flex");
     const refPage1 = useRef(null);
     let [positionX, setPositionX] = useState(10);
     let [backgroundPositionX, setBackgroundPositionX] = useState(0);
-    let [test, setTest] = useState("hidden");
     const refUser = useRef(null);
     const refHouse = useRef(null);
-    const speed = 40;
-    const backGroundSpeed = 320;
+    const speed = 5;
+    const backGroundSpeed = 100;
 
     useEffect(() => {
         document.body.classList.add("overflow-body");
+        setInterval(checkForBuilding, 100);
         window.addEventListener("keydown", (event) => {
             moveUser(event.keyCode);
         });
 
         return () => {
-            window.removeEventListener("keydown");
+            window.removeEventListener("keydown", () => {});
         };
     }, []);
 
@@ -40,7 +41,7 @@ export default function Home() {
                     minWidth: 200.0,
                     scale: 1.0,
                     scaleMobile: 1.0,
-                    backgroundColor: 0x0,
+                    backgroundColor: 0x1d1d1d,
                     colorMode: "lerpGradient",
                     birdSize: 1.2,
                     speedLimit: 4.0,
@@ -55,20 +56,22 @@ export default function Home() {
         };
     }, [vantaEffect]);
 
-    /* useEffect(() => {
-        checkForBuilding();
-    }, [positionX, backgroundPositionX]); */
-
-    /* const checkForBuilding = () => {
+    const checkForBuilding = () => {
         const userX = refUser.current.getBoundingClientRect();
         const houseX = refHouse.current.getBoundingClientRect();
+        console.log(userX.x);
+
+        // have the first speechbubble always shown at the beginning
+        if (userX.x > 100) {
+            setDisplaySpeechbubble("none");
+        } else if (userX.x < 100) {
+            setDisplaySpeechbubble("flex");
+        }
         if (userX.x - houseX.x > -200 && userX.x - houseX.x < 500) {
             console.log("Enter Projects House");
-            setTest("visible");
             return;
         }
-        setTest("hidden");
-    }; */
+    };
 
     const moveUser = (key) => {
         if (key === 39) {
@@ -104,14 +107,8 @@ export default function Home() {
                     <Hamburgermenu />
                     <Name />
                 </div>
-                <div className="page2">
+                <div className="page2" ref={refHouse}>
                     <Blitzdraw />
-                    {/* <div ref={refHouse} className="house">
-                        <div
-                            className="test"
-                            style={{ visibility: test }}
-                        ></div>
-                    </div> */}
                 </div>
                 <div className="page3">
                     <Facebook />
@@ -125,7 +122,13 @@ export default function Home() {
                 style={{ left: `${positionX}%` }}
                 className="player-wrapper"
             >
-                PLAYER
+                <div className="speechbubble-wrapper">
+                    <img
+                        style={{ display: displaySpeechbubble }}
+                        className="speechbubble"
+                        src="https://i.ibb.co/CthMHXd/first-speech.png"
+                    ></img>
+                </div>
             </div>
         </>
     );

@@ -40,13 +40,29 @@ export default function Blitzdraw() {
                     <source src={video.url}></source>
                 </video>
             )}
-            <div className="page2-description">
-                <p>Multiplayer drawing game</p>
+            <div className="page3-description">
+                <p>
+                    I created a Facebook clone including features like
+                    friendships, private chats, feed posts, profile and cover
+                    picture for your personal profile, and much more!
+                </p>
+                <p>
+                    You can find the code on{" "}
+                    <a
+                        rel="noreferrer"
+                        target="_blank"
+                        href=" https://github.com/joeptt/facebook-clone"
+                    >
+                        Github
+                    </a>
+                </p>
+
                 <ul>
-                    <li>Created with react</li>
-                    <li>created with sockets.io</li>
-                    <li>Canvas</li>
-                    <li>Multiplayer</li>
+                    <li>created with React</li>
+                    <li>used Express serverside</li>
+                    <li>used sockets.io for private and group chat</li>
+                    <li>used SQL for Database</li>
+                    <li>used multer to store Images on AWS` S3</li>
                 </ul>
             </div>
         </div>
