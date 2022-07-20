@@ -7,13 +7,20 @@ import Hisham from "./hisham";
 import BIRDS from "vanta/dist/vanta.birds.min";
 
 export default function Home() {
+    const bubble1 = "https://i.ibb.co/CthMHXd/first-speech.png";
+    const bubble2 = "https://i.ibb.co/BTLt769/second-speech.png";
+    const bubble3 = "https://i.ibb.co/LCjqyQc/third-speech.png";
+    const bubble4 = "https://i.ibb.co/C1MyyVG/fourth-speech.png";
+    const [bubbleSrc, setBubbleSrc] = useState();
     const [vantaEffect, setVantaEffect] = useState(0);
     const [displaySpeechbubble, setDisplaySpeechbubble] = useState("flex");
     const refPage1 = useRef(null);
     let [positionX, setPositionX] = useState(10);
     let [backgroundPositionX, setBackgroundPositionX] = useState(0);
     const refUser = useRef(null);
-    const refHouse = useRef(null);
+    const refPage2 = useRef(null);
+    const refPage3 = useRef(null);
+    const refPage4 = useRef(null);
     const speed = 5;
     const backGroundSpeed = 100;
 
@@ -58,18 +65,29 @@ export default function Home() {
 
     const checkForBuilding = () => {
         const userX = refUser.current.getBoundingClientRect();
-        const houseX = refHouse.current.getBoundingClientRect();
+        const page2X = refPage2.current.getBoundingClientRect();
+        const page3X = refPage3.current.getBoundingClientRect();
+        const page4X = refPage4.current.getBoundingClientRect();
         console.log(userX.x);
 
         // have the first speechbubble always shown at the beginning
         if (userX.x > 100) {
             setDisplaySpeechbubble("none");
         } else if (userX.x < 100) {
+            setBubbleSrc(bubble1);
             setDisplaySpeechbubble("flex");
         }
-        if (userX.x - houseX.x > -200 && userX.x - houseX.x < 500) {
-            console.log("Enter Projects House");
+
+        if (userX.x - page2X.x > -200 && userX.x - page2X.x < 500) {
+            setBubbleSrc(bubble2);
+            setDisplaySpeechbubble("flex");
             return;
+        } else if (userX.x - page3X.x > -200 && userX.x - page3X.x < 500) {
+            setBubbleSrc(bubble3);
+            setDisplaySpeechbubble("flex");
+        } else if (userX.x - page4X.x > -200 && userX.x - page4X.x < 500) {
+            setBubbleSrc(bubble4);
+            setDisplaySpeechbubble("flex");
         }
     };
 
@@ -107,13 +125,13 @@ export default function Home() {
                     <Hamburgermenu />
                     <Name />
                 </div>
-                <div className="page2" ref={refHouse}>
+                <div className="page2" ref={refPage2}>
                     <Blitzdraw />
                 </div>
-                <div className="page3">
+                <div className="page3" ref={refPage3}>
                     <Facebook />
                 </div>
-                <div className="page4">
+                <div className="page4" ref={refPage4}>
                     <Hisham />
                 </div>
             </div>
@@ -126,7 +144,7 @@ export default function Home() {
                     <img
                         style={{ display: displaySpeechbubble }}
                         className="speechbubble"
-                        src="https://i.ibb.co/CthMHXd/first-speech.png"
+                        src={bubbleSrc}
                     ></img>
                 </div>
             </div>

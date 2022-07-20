@@ -237,6 +237,16 @@ export default function Projects() {
                                         with a pre-written message including the
                                         entered date.{" "}
                                     </p>
+                                    <p>
+                                        You can find the code on{" "}
+                                        <a
+                                            rel="noreferrer"
+                                            target="_blank"
+                                            href="https://github.com/joeptt/barbershop-hicham"
+                                        >
+                                            Github
+                                        </a>
+                                    </p>
                                     <ul>
                                         <li>created with react</li>
                                         <li>using Contentful as CMS</li>
