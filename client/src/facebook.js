@@ -22,7 +22,7 @@ export default function Blitzdraw() {
                 content_type: "facebookClone",
             });
             const responseData = response.items[0].fields.facebookClone;
-            console.log(responseData);
+
             if (responseData) {
                 cleanUpData(responseData);
             } else {
@@ -38,6 +38,7 @@ export default function Blitzdraw() {
             {video && (
                 <video width="640" height="360" controls>
                     <source src={video.url}></source>
+                    This browser doesnt support video tag.
                 </video>
             )}
             <div className="page3-description">

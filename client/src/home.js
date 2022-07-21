@@ -4,6 +4,7 @@ import Hamburgermenu from "./hamburgemenu";
 import Facebook from "./facebook";
 import Blitzdraw from "./blitzdraw";
 import Hisham from "./hisham";
+import Player from "./player";
 import BIRDS from "vanta/dist/vanta.birds.min";
 
 export default function Home() {
@@ -14,11 +15,10 @@ export default function Home() {
     const [bubbleSrc, setBubbleSrc] = useState();
     const [vantaEffect, setVantaEffect] = useState(0);
     const [displaySpeechbubble, setDisplaySpeechbubble] = useState("none");
-    const [bubble1shown, setbBubble1shown] = useState("flex");
-    const refPage1 = useRef(null);
     let [positionX, setPositionX] = useState(10);
     let [backgroundPositionX, setBackgroundPositionX] = useState(0);
     const refUser = useRef(null);
+    const refPage1 = useRef(null);
     const refPage2 = useRef(null);
     const refPage3 = useRef(null);
     const refPage4 = useRef(null);
@@ -70,7 +70,6 @@ export default function Home() {
         const page2X = refPage2.current.getBoundingClientRect();
         const page3X = refPage3.current.getBoundingClientRect();
         const page4X = refPage4.current.getBoundingClientRect();
-        console.log(userX.x);
 
         // Hide Bubble when away from page start
         if (userX.x > 100) {
@@ -92,6 +91,8 @@ export default function Home() {
             setBubbleSrc(bubble4);
             setDisplaySpeechbubble("flex");
             return;
+        } else {
+            setDisplaySpeechbubble("none");
         }
     };
 
@@ -139,20 +140,12 @@ export default function Home() {
                     <Hisham />
                 </div>
             </div>
-
-            <div
-                ref={refUser}
-                style={{ left: `${positionX}%` }}
-                className="player-wrapper"
-            >
-                <div className="speechbubble-wrapper">
-                    <img
-                        style={{ display: displaySpeechbubble }}
-                        className="speechbubble"
-                        src={bubbleSrc}
-                    ></img>
-                </div>
-            </div>
+            <Player
+                refUser={refUser}
+                positionX={positionX}
+                displaySpeechbubble={displaySpeechbubble}
+                bubbleSrc={bubbleSrc}
+            />
         </>
     );
 }

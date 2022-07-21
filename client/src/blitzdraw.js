@@ -22,7 +22,7 @@ export default function Blitzdraw() {
                 content_type: "videos",
             });
             const responseData = response.items[0].fields.videos[0];
-            console.log(responseData);
+
             if (responseData) {
                 cleanUpData(responseData);
             } else {
@@ -33,11 +33,26 @@ export default function Blitzdraw() {
         }
     }, []);
 
+    const onClickPlay = () => {
+        console.log("TEST");
+    };
+
+    const onClickPause = () => {
+        console.log("JUJU");
+    };
+
     return (
         <div className="blitzdraw-wrapper">
             {video && (
-                <video width="640" height="360" controls>
+                <video
+                    width="640"
+                    height="360"
+                    onPlay={onClickPlay}
+                    onPause={onClickPause}
+                    controls
+                >
                     <source src={video.url}></source>
+                    This browser doesnt support video tag.
                 </video>
             )}
             <div className="page2-description">

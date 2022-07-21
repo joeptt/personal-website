@@ -238,7 +238,7 @@ label div:last-child {
     justify-content: center;
     height: 40%;
     width: 100px;
-    background-color: bisque;
+    background-color: #ffc107;
     position: absolute;
     bottom: 0;
     transition: 0.5s all ease;
