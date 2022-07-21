@@ -13,7 +13,8 @@ export default function Home() {
     const bubble4 = "https://i.ibb.co/C1MyyVG/fourth-speech.png";
     const [bubbleSrc, setBubbleSrc] = useState();
     const [vantaEffect, setVantaEffect] = useState(0);
-    const [displaySpeechbubble, setDisplaySpeechbubble] = useState("flex");
+    const [displaySpeechbubble, setDisplaySpeechbubble] = useState("none");
+    const [bubble1shown, setbBubble1shown] = useState("flex");
     const refPage1 = useRef(null);
     let [positionX, setPositionX] = useState(10);
     let [backgroundPositionX, setBackgroundPositionX] = useState(0);
@@ -65,29 +66,32 @@ export default function Home() {
 
     const checkForBuilding = () => {
         const userX = refUser.current.getBoundingClientRect();
+        const page1X = refPage1.current.getBoundingClientRect();
         const page2X = refPage2.current.getBoundingClientRect();
         const page3X = refPage3.current.getBoundingClientRect();
         const page4X = refPage4.current.getBoundingClientRect();
         console.log(userX.x);
 
-        // have the first speechbubble always shown at the beginning
+        // Hide Bubble when away from page start
         if (userX.x > 100) {
             setDisplaySpeechbubble("none");
-        } else if (userX.x < 100) {
+        }
+        if (userX.x - page1X.x > -200 && userX.x - page1X.x < 500) {
             setBubbleSrc(bubble1);
             setDisplaySpeechbubble("flex");
-        }
-
-        if (userX.x - page2X.x > -200 && userX.x - page2X.x < 500) {
+            return;
+        } else if (userX.x - page2X.x > -200 && userX.x - page2X.x < 500) {
             setBubbleSrc(bubble2);
             setDisplaySpeechbubble("flex");
             return;
         } else if (userX.x - page3X.x > -200 && userX.x - page3X.x < 500) {
             setBubbleSrc(bubble3);
             setDisplaySpeechbubble("flex");
+            return;
         } else if (userX.x - page4X.x > -200 && userX.x - page4X.x < 500) {
             setBubbleSrc(bubble4);
             setDisplaySpeechbubble("flex");
+            return;
         }
     };
 
@@ -135,6 +139,7 @@ export default function Home() {
                     <Hisham />
                 </div>
             </div>
+
             <div
                 ref={refUser}
                 style={{ left: `${positionX}%` }}
