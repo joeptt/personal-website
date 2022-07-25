@@ -234,21 +234,26 @@ label div:last-child {
 
 .player-wrapper {
     display: flex;
-    align-items: center;
+    align-items: flex-end;
     justify-content: center;
     height: 40%;
     width: 100px;
-    background-color: #ffc107;
     position: absolute;
     bottom: 0;
     transition: 0.5s all ease;
     transform: translateX(-50%);
 }
 
+.player-wrapper img {
+    height: 100%;
+    position: absolute;
+    bottom: -55px;
+}
+
 .speechbubble {
     opacity: 0.8;
     position: absolute;
-    height: 400px;
+    height: 430px;
     width: 400px;
     top: -340px;
     right: -300px;

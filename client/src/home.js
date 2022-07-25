@@ -22,14 +22,26 @@ export default function Home() {
     const refPage2 = useRef(null);
     const refPage3 = useRef(null);
     const refPage4 = useRef(null);
+    const [playerStance, setPlayerStance] = useState(null);
+    const playerStanding = "https://i.ibb.co/c28xNqL/standing-Joe.png";
+    const playerSitting = "https://i.ibb.co/3snYN5k/sitting-Joe.png";
+    const playerWalkingRight1 =
+        "https://i.ibb.co/cgQmFFR/walking-Joe-Right-Leg.png";
+    const playerWalkingRight2 =
+        "https://i.ibb.co/0yvwJ7L/walking-Joe-Left-Leg.png";
+    const playerWalkingLeft1 =
+        "https://i.ibb.co/NLbFy2Z/walking-Joe-Right-Leg-Backwards.png";
+    const playerWalkingLeft2 =
+        "https://i.ibb.co/PQN800v/walking-Joe-Left-Leg-Backwards.png";
     const speed = 5;
     const backGroundSpeed = 100;
 
     useEffect(() => {
         document.body.classList.add("overflow-body");
+        setPlayerStance(playerStanding);
         setInterval(checkForBuilding, 100);
         window.addEventListener("keydown", (event) => {
-            moveUser(event.keyCode);
+            moveUser(event);
         });
 
         return () => {
@@ -70,24 +82,23 @@ export default function Home() {
         const page2X = refPage2.current.getBoundingClientRect();
         const page3X = refPage3.current.getBoundingClientRect();
         const page4X = refPage4.current.getBoundingClientRect();
-
         // Hide Bubble when away from page start
         if (userX.x > 100) {
             setDisplaySpeechbubble("none");
         }
-        if (userX.x - page1X.x > -200 && userX.x - page1X.x < 500) {
+        if (userX.x - page1X.x > -200 && userX.x - page1X.x < 100) {
             setBubbleSrc(bubble1);
             setDisplaySpeechbubble("flex");
             return;
-        } else if (userX.x - page2X.x > -200 && userX.x - page2X.x < 500) {
+        } else if (userX.x - page2X.x > -200 && userX.x - page2X.x < 300) {
             setBubbleSrc(bubble2);
             setDisplaySpeechbubble("flex");
             return;
-        } else if (userX.x - page3X.x > -200 && userX.x - page3X.x < 500) {
+        } else if (userX.x - page3X.x > -200 && userX.x - page3X.x < 300) {
             setBubbleSrc(bubble3);
             setDisplaySpeechbubble("flex");
             return;
-        } else if (userX.x - page4X.x > -200 && userX.x - page4X.x < 500) {
+        } else if (userX.x - page4X.x > -200 && userX.x - page4X.x < 300) {
             setBubbleSrc(bubble4);
             setDisplaySpeechbubble("flex");
             return;
@@ -96,8 +107,26 @@ export default function Home() {
         }
     };
 
-    const moveUser = (key) => {
-        if (key === 39) {
+    const switchImageForward = () => {
+        console.log(playerStance);
+        if (playerStance === playerStanding) {
+            setPlayerStance(playerWalkingRight1);
+        } else if (playerStance === playerWalkingRight1) {
+            setPlayerStance(playerWalkingRight2);
+        } else if (playerStance === playerWalkingRight2) {
+            setPlayerStance(playerWalkingRight1);
+        }
+        // setWalkingForward to left foot forward
+    };
+
+    const switchImageBackwards = () => {
+        // if image is right foot forward
+        // setWalkingForward to left foot forward
+    };
+
+    const moveUser = (event) => {
+        switchImageForward();
+        if (event.keyCode === 39) {
             if (positionX >= 50) {
                 setBackgroundPositionX(
                     (backgroundPositionX =
@@ -106,7 +135,8 @@ export default function Home() {
                 return;
             }
             setPositionX((positionX = positionX + speed));
-        } else if (key === 37) {
+        } else if (event.keyCode === 37) {
+            switchImageBackwards();
             if (positionX <= 10) {
                 if (backgroundPositionX < 0) {
                     setBackgroundPositionX(
@@ -120,6 +150,15 @@ export default function Home() {
         }
     };
 
+    // Video Playing functions
+    const onClickPlay = () => {
+        setPlayerStance(playerSitting);
+    };
+
+    const onClickPause = () => {
+        setPlayerStance(playerStanding);
+    };
+
     return (
         <>
             <div
@@ -131,13 +170,22 @@ export default function Home() {
                     <Name />
                 </div>
                 <div className="page2" ref={refPage2}>
-                    <Blitzdraw />
+                    <Blitzdraw
+                        onClickPlay={onClickPlay}
+                        onClickPause={onClickPause}
+                    />
                 </div>
                 <div className="page3" ref={refPage3}>
-                    <Facebook />
+                    <Facebook
+                        onClickPlay={onClickPlay}
+                        onClickPause={onClickPause}
+                    />
                 </div>
                 <div className="page4" ref={refPage4}>
-                    <Hisham />
+                    <Hisham
+                        onClickPlay={onClickPlay}
+                        onClickPause={onClickPause}
+                    />
                 </div>
             </div>
             <Player
@@ -145,6 +193,7 @@ export default function Home() {
                 positionX={positionX}
                 displaySpeechbubble={displaySpeechbubble}
                 bubbleSrc={bubbleSrc}
+                playerStance={playerStance}
             />
         </>
     );

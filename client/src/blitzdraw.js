@@ -1,7 +1,7 @@
 import { client } from "./client";
 import { useCallback, useState, useEffect } from "react";
 
-export default function Blitzdraw() {
+export default function Blitzdraw({ onClickPlay, onClickPause }) {
     const [video, setVideo] = useState();
 
     useEffect(() => {
@@ -32,14 +32,6 @@ export default function Blitzdraw() {
             console.log(error);
         }
     }, []);
-
-    const onClickPlay = () => {
-        console.log("TEST");
-    };
-
-    const onClickPause = () => {
-        console.log("JUJU");
-    };
 
     return (
         <div className="blitzdraw-wrapper">
