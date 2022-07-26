@@ -1,7 +1,7 @@
 import { client } from "./client";
 import { useCallback, useState, useEffect } from "react";
 
-export default function Blitzdraw() {
+export default function Blitzdraw({ onClickPlay, onClickPause }) {
     const [video, setVideo] = useState();
 
     useEffect(() => {
@@ -36,7 +36,13 @@ export default function Blitzdraw() {
     return (
         <div className="blitzdraw-wrapper">
             {video && (
-                <video width="640" height="360" controls>
+                <video
+                    width="640"
+                    height="360"
+                    onPlay={onClickPlay}
+                    onPause={onClickPause}
+                    controls
+                >
                     <source src={video.url}></source>
                     This browser doesnt support video tag.
                 </video>

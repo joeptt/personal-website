@@ -248,6 +248,8 @@ label div:last-child {
     height: 700px;
     position: absolute;
     bottom: -130px;
+    width: 260px;
+    object-fit: cover;
 }
 
 .speechbubble {

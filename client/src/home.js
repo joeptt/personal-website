@@ -35,6 +35,7 @@ export default function Home() {
         "https://i.ibb.co/PQN800v/walking-Joe-Left-Leg-Backwards.png";
     const speed = 3;
     const backGroundSpeed = 60;
+    const timerRef = useRef(-1);
 
     useEffect(() => {
         document.body.classList.add("overflow-body");
@@ -42,11 +43,12 @@ export default function Home() {
         setPlayerStance(playerStanding);
         setInterval(checkForBuilding, 100);
         window.addEventListener("keydown", (event) => {
+            clearTimeout(timerRef.current);
             moveUser(event);
         });
 
         window.addEventListener("keyup", () => {
-            setTimeout(() => {
+            timerRef.current = setTimeout(() => {
                 setPlayerStance(playerStanding);
             }, 500);
         });
