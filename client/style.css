@@ -6,6 +6,7 @@ body,
 html {
     background-color: black;
     margin: 0;
+    padding: 0;
 }
 
 .overflow-body {
@@ -370,5 +371,84 @@ label div:last-child {
     }
     100% {
         transform: scale(1, 1) translateY(0);
+    }
+}
+
+@media only screen and (max-width: 800px) {
+    .overflow-body {
+        overflow: scroll;
+    }
+
+    .player-wrapper {
+        display: none;
+    }
+
+    .home-wrapper {
+        flex-direction: column;
+        height: auto;
+        width: auto;
+    }
+
+    .vanta-canvas {
+        position: absolute;
+        z-index: 0;
+        top: 0px;
+        left: 0px;
+        width: 390px;
+        height: 100%;
+        width: 100%;
+        object-fit: cover;
+    }
+
+    .page1 {
+        height: 100vh;
+    }
+    .page2 {
+        height: 100vh;
+    }
+    .page3 {
+        height: 100vh;
+    }
+    .page4 {
+        height: 100vh;
+    }
+
+    .page1 h1 {
+        font-size: 50px;
+    }
+
+    .page1 h3 {
+        margin: -10px 0 0 0;
+        font-size: 20px;
+    }
+
+    .name-job-wrapper {
+        margin: 50% 20px 0 0;
+    }
+
+    .blitzdraw-wrapper {
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+    }
+
+    .blitzdraw-wrapper video {
+        width: 90vw;
+        height: auto;
+        margin: 0 0 20px 0;
+    }
+
+    .page2-description {
+        width: 90vw;
+    }
+    .page3-description {
+        width: 90vw;
+    }
+
+    .page4 {
+        border: none;
+    }
+    .page4-description {
+        width: 90vw;
     }
 }
