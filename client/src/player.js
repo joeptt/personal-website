@@ -13,7 +13,7 @@ export default function Player({
             }}
             className="player-wrapper"
         >
-            <img src={playerStance}></img>
+            <img className="player-img" src={playerStance}></img>
             <div className="speechbubble-wrapper">
                 <img
                     style={{ display: displaySpeechbubble }}

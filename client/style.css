@@ -183,7 +183,7 @@ label div:last-child {
     display: inline-block;
 }
 
-.page1 span:hover {
+.hoverSpan {
     color: rgba(0, 221, 255, 0.6);
     animation: bounce 1s ease-in-out;
 }
@@ -244,19 +244,19 @@ label div:last-child {
     transform: translateX(-50%);
 }
 
-.player-wrapper img {
-    height: 100%;
+.player-img {
+    height: 700px;
     position: absolute;
-    bottom: -55px;
+    bottom: -130px;
 }
 
 .speechbubble {
     opacity: 0.8;
     position: absolute;
-    height: 430px;
+    height: 347px;
     width: 400px;
     top: -340px;
-    right: -300px;
+    right: -373px;
 }
 
 /* PAGE 3 */

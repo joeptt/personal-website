@@ -33,19 +33,26 @@ export default function Home() {
         "https://i.ibb.co/NLbFy2Z/walking-Joe-Right-Leg-Backwards.png";
     const playerWalkingLeft2 =
         "https://i.ibb.co/PQN800v/walking-Joe-Left-Leg-Backwards.png";
-    const speed = 5;
-    const backGroundSpeed = 100;
+    const speed = 3;
+    const backGroundSpeed = 60;
 
     useEffect(() => {
         document.body.classList.add("overflow-body");
+
         setPlayerStance(playerStanding);
         setInterval(checkForBuilding, 100);
         window.addEventListener("keydown", (event) => {
             moveUser(event);
         });
 
+        window.addEventListener("keyup", () => {
+            setTimeout(() => {
+                setPlayerStance(playerStanding);
+            }, 500);
+        });
         return () => {
             window.removeEventListener("keydown", () => {});
+            window.removeEventListener("keyup", () => {});
         };
     }, []);
 
@@ -108,25 +115,42 @@ export default function Home() {
     };
 
     const switchImageForward = () => {
-        console.log(playerStance);
-        if (playerStance === playerStanding) {
-            setPlayerStance(playerWalkingRight1);
-        } else if (playerStance === playerWalkingRight1) {
-            setPlayerStance(playerWalkingRight2);
-        } else if (playerStance === playerWalkingRight2) {
-            setPlayerStance(playerWalkingRight1);
-        }
-        // setWalkingForward to left foot forward
+        setPlayerStance((currentStance) => {
+            if (
+                currentStance === playerStanding ||
+                currentStance === playerWalkingLeft1 ||
+                currentStance === playerWalkingLeft2 ||
+                currentStance === playerSitting
+            ) {
+                return playerWalkingRight1;
+            } else if (currentStance === playerWalkingRight1) {
+                return playerWalkingRight2;
+            } else if (currentStance === playerWalkingRight2) {
+                return playerWalkingRight1;
+            }
+        });
     };
 
     const switchImageBackwards = () => {
-        // if image is right foot forward
-        // setWalkingForward to left foot forward
+        setPlayerStance((currentStance) => {
+            if (
+                currentStance === playerStanding ||
+                currentStance === playerWalkingRight1 ||
+                currentStance === playerWalkingRight2 ||
+                currentStance === playerSitting
+            ) {
+                return playerWalkingLeft1;
+            } else if (currentStance === playerWalkingLeft1) {
+                return playerWalkingLeft2;
+            } else if (currentStance === playerWalkingLeft2) {
+                return playerWalkingLeft1;
+            }
+        });
     };
 
     const moveUser = (event) => {
-        switchImageForward();
         if (event.keyCode === 39) {
+            switchImageForward();
             if (positionX >= 50) {
                 setBackgroundPositionX(
                     (backgroundPositionX =
