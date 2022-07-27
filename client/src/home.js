@@ -55,11 +55,14 @@ export default function Home() {
     }, []);
 
     useEffect(() => {
+        setPlayerStance(playerStanding);
+    }, [playerStanding]);
+
+    useEffect(() => {
         getStanceImages();
     }, [getStanceImages]);
 
     const cleanUpData = useCallback((rawData) => {
-        console.log("start");
         for (let i = 0; i < rawData.length; i++) {
             if (rawData[i].fields.title === "playerStanding") {
                 setPlayerStanding(rawData[i].fields.file.url);
@@ -75,7 +78,6 @@ export default function Home() {
                 setPlayerWalkingLeft2(rawData[i].fields.file.url);
             }
         }
-        console.log("done", playerStanding);
     }, []);
 
     const getStanceImages = useCallback(async () => {
@@ -155,6 +157,7 @@ export default function Home() {
 
     const switchImageForward = () => {
         setPlayerStance((currentStance) => {
+            console.log("Test", currentStance, playerStanding);
             if (
                 currentStance === playerStanding ||
                 currentStance === playerWalkingLeft1 ||
