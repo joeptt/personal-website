@@ -1,4 +1,4 @@
-import { useEffect, useState, useRef, useCallback } from "react";
+import { useEffect, useState, useRef } from "react";
 import Name from "./name";
 import Hamburgermenu from "./hamburgemenu";
 import Facebook from "./facebook";
@@ -6,7 +6,6 @@ import Blitzdraw from "./blitzdraw";
 import Hisham from "./hisham";
 import Player from "./player";
 import BIRDS from "vanta/dist/vanta.birds.min";
-import { client } from "./client";
 
 export default function Home() {
     const bubble1 = "https://i.ibb.co/CthMHXd/first-speech.png";
@@ -23,13 +22,17 @@ export default function Home() {
     const refPage2 = useRef(null);
     const refPage3 = useRef(null);
     const refPage4 = useRef(null);
-    const [playerStance, setPlayerStance] = useState();
-    const [playerStanding, setPlayerStanding] = useState();
-    const [playerSitting, setPlayerSitting] = useState();
-    const [playerWalkingRight1, setPlayerWalkingRight1] = useState();
-    const [playerWalkingRight2, setPlayerWalkingRight2] = useState();
-    const [playerWalkingLeft1, setPlayerWalkingLeft1] = useState();
-    const [playerWalkingLeft2, setPlayerWalkingLeft2] = useState();
+    const [playerStance, setPlayerStance] = useState(null);
+    const playerStanding = "https://i.ibb.co/c28xNqL/standing-Joe.png";
+    const playerSitting = "https://i.ibb.co/3snYN5k/sitting-Joe.png";
+    const playerWalkingRight1 =
+        "https://i.ibb.co/cgQmFFR/walking-Joe-Right-Leg.png";
+    const playerWalkingRight2 =
+        "https://i.ibb.co/0yvwJ7L/walking-Joe-Left-Leg.png";
+    const playerWalkingLeft1 =
+        "https://i.ibb.co/NLbFy2Z/walking-Joe-Right-Leg-Backwards.png";
+    const playerWalkingLeft2 =
+        "https://i.ibb.co/PQN800v/walking-Joe-Left-Leg-Backwards.png";
     const speed = 3;
     const backGroundSpeed = 60;
     const timerRef = useRef(-1);
@@ -37,8 +40,8 @@ export default function Home() {
     useEffect(() => {
         document.body.classList.add("overflow-body");
 
+        setPlayerStance(playerStanding);
         setInterval(checkForBuilding, 100);
-
         window.addEventListener("keydown", (event) => {
             clearTimeout(timerRef.current);
             moveUser(event);
@@ -53,54 +56,6 @@ export default function Home() {
             window.removeEventListener("keydown", () => {});
             window.removeEventListener("keyup", () => {});
         };
-    }, []);
-
-    useEffect(() => {
-        setPlayerStance(playerStanding);
-    }, [playerStanding]);
-
-    useEffect(() => {
-        getStanceImages();
-    }, [getStanceImages]);
-
-    const cleanUpData = useCallback((rawData) => {
-        for (let i = 0; i < rawData.length; i++) {
-            if (rawData[i].fields.title === "playerStanding") {
-                setPlayerStanding(rawData[i].fields.file.url);
-            } else if (rawData[i].fields.title === "playerSitting") {
-                setPlayerSitting(rawData[i].fields.file.url);
-            } else if (rawData[i].fields.title === "playerWalkingRight1") {
-                setPlayerWalkingRight1(rawData[i].fields.file.url);
-            } else if (rawData[i].fields.title === "playerWalkingRight2") {
-                setPlayerWalkingRight2(rawData[i].fields.file.url);
-            } else if (rawData[i].fields.title === "playerWalkingLeft1") {
-                setPlayerWalkingLeft1(rawData[i].fields.file.url);
-            } else if (rawData[i].fields.title === "playerWalkingLeft2") {
-                setPlayerWalkingLeft2(rawData[i].fields.file.url);
-            }
-        }
-    }, []);
-
-    const getStanceImages = useCallback(async () => {
-        try {
-            const response = await client.getEntries({
-                content_type: "stanceImages",
-            });
-            const responseData = response.items[0].fields.stanceImages;
-
-            if (responseData) {
-                cleanUpData(responseData);
-            } else {
-                setPlayerStanding("");
-                setPlayerSitting("");
-                setPlayerWalkingRight1("");
-                setPlayerWalkingRight2("");
-                setPlayerWalkingLeft1("");
-                setPlayerWalkingLeft2("");
-            }
-        } catch (error) {
-            console.log(error);
-        }
     }, []);
 
     useEffect(() => {
@@ -163,7 +118,6 @@ export default function Home() {
 
     const switchImageForward = () => {
         setPlayerStance((currentStance) => {
-            console.log("Test", currentStance, playerStanding);
             if (
                 currentStance === playerStanding ||
                 currentStance === playerWalkingLeft1 ||
@@ -265,7 +219,7 @@ export default function Home() {
                 positionX={positionX}
                 displaySpeechbubble={displaySpeechbubble}
                 bubbleSrc={bubbleSrc}
-                playerStance={playerStance ? playerStance : "TEST"}
+                playerStance={playerStance}
             />
         </>
     );
