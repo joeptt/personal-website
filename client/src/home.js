@@ -23,7 +23,7 @@ export default function Home() {
     const refPage2 = useRef(null);
     const refPage3 = useRef(null);
     const refPage4 = useRef(null);
-    const [playerStance, setPlayerStance] = useState(null);
+    const [playerStance, setPlayerStance] = useState();
     const [playerStanding, setPlayerStanding] = useState();
     const [playerSitting, setPlayerSitting] = useState();
     const [playerWalkingRight1, setPlayerWalkingRight1] = useState();
@@ -38,6 +38,7 @@ export default function Home() {
         document.body.classList.add("overflow-body");
 
         setInterval(checkForBuilding, 100);
+
         window.addEventListener("keydown", (event) => {
             clearTimeout(timerRef.current);
             moveUser(event);
@@ -90,7 +91,12 @@ export default function Home() {
             if (responseData) {
                 cleanUpData(responseData);
             } else {
-                return;
+                setPlayerStanding("");
+                setPlayerSitting("");
+                setPlayerWalkingRight1("");
+                setPlayerWalkingRight2("");
+                setPlayerWalkingLeft1("");
+                setPlayerWalkingLeft2("");
             }
         } catch (error) {
             console.log(error);
@@ -259,7 +265,7 @@ export default function Home() {
                 positionX={positionX}
                 displaySpeechbubble={displaySpeechbubble}
                 bubbleSrc={bubbleSrc}
-                playerStance={playerStance}
+                playerStance={playerStance ? playerStance : "TEST"}
             />
         </>
     );
