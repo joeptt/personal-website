@@ -1,4 +1,4 @@
-import { useEffect, useState, useRef } from "react";
+import { useEffect, useState, useRef, useCallback } from "react";
 import Name from "./name";
 import Hamburgermenu from "./hamburgemenu";
 import Facebook from "./facebook";
@@ -6,6 +6,7 @@ import Blitzdraw from "./blitzdraw";
 import Hisham from "./hisham";
 import Player from "./player";
 import BIRDS from "vanta/dist/vanta.birds.min";
+import { client } from "./client";
 
 export default function Home() {
     const bubble1 = "https://i.ibb.co/CthMHXd/first-speech.png";
@@ -23,16 +24,12 @@ export default function Home() {
     const refPage3 = useRef(null);
     const refPage4 = useRef(null);
     const [playerStance, setPlayerStance] = useState(null);
-    const playerStanding = "https://i.ibb.co/c28xNqL/standing-Joe.png";
-    const playerSitting = "https://i.ibb.co/3snYN5k/sitting-Joe.png";
-    const playerWalkingRight1 =
-        "https://i.ibb.co/cgQmFFR/walking-Joe-Right-Leg.png";
-    const playerWalkingRight2 =
-        "https://i.ibb.co/0yvwJ7L/walking-Joe-Left-Leg.png";
-    const playerWalkingLeft1 =
-        "https://i.ibb.co/NLbFy2Z/walking-Joe-Right-Leg-Backwards.png";
-    const playerWalkingLeft2 =
-        "https://i.ibb.co/PQN800v/walking-Joe-Left-Leg-Backwards.png";
+    const [playerStanding, setPlayerStanding] = useState();
+    const [playerSitting, setPlayerSitting] = useState();
+    const [playerWalkingRight1, setPlayerWalkingRight1] = useState();
+    const [playerWalkingRight2, setPlayerWalkingRight2] = useState();
+    const [playerWalkingLeft1, setPlayerWalkingLeft1] = useState();
+    const [playerWalkingLeft2, setPlayerWalkingLeft2] = useState();
     const speed = 3;
     const backGroundSpeed = 60;
     const timerRef = useRef(-1);
@@ -40,7 +37,6 @@ export default function Home() {
     useEffect(() => {
         document.body.classList.add("overflow-body");
 
-        setPlayerStance(playerStanding);
         setInterval(checkForBuilding, 100);
         window.addEventListener("keydown", (event) => {
             clearTimeout(timerRef.current);
@@ -56,6 +52,47 @@ export default function Home() {
             window.removeEventListener("keydown", () => {});
             window.removeEventListener("keyup", () => {});
         };
+    }, []);
+
+    useEffect(() => {
+        getStanceImages();
+    }, [getStanceImages]);
+
+    const cleanUpData = useCallback((rawData) => {
+        console.log("start");
+        for (let i = 0; i < rawData.length; i++) {
+            if (rawData[i].fields.title === "playerStanding") {
+                setPlayerStanding(rawData[i].fields.file.url);
+            } else if (rawData[i].fields.title === "playerSitting") {
+                setPlayerSitting(rawData[i].fields.file.url);
+            } else if (rawData[i].fields.title === "playerWalkingRight1") {
+                setPlayerWalkingRight1(rawData[i].fields.file.url);
+            } else if (rawData[i].fields.title === "playerWalkingRight2") {
+                setPlayerWalkingRight2(rawData[i].fields.file.url);
+            } else if (rawData[i].fields.title === "playerWalkingLeft1") {
+                setPlayerWalkingLeft1(rawData[i].fields.file.url);
+            } else if (rawData[i].fields.title === "playerWalkingLeft2") {
+                setPlayerWalkingLeft2(rawData[i].fields.file.url);
+            }
+        }
+        console.log("done", playerStanding);
+    }, []);
+
+    const getStanceImages = useCallback(async () => {
+        try {
+            const response = await client.getEntries({
+                content_type: "stanceImages",
+            });
+            const responseData = response.items[0].fields.stanceImages;
+
+            if (responseData) {
+                cleanUpData(responseData);
+            } else {
+                return;
+            }
+        } catch (error) {
+            console.log(error);
+        }
     }, []);
 
     useEffect(() => {

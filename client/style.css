@@ -401,16 +401,16 @@ label div:last-child {
     }
 
     .page1 {
-        height: 100vh;
+        height: 130vh;
     }
     .page2 {
-        height: 100vh;
+        height: 130vh;
     }
     .page3 {
-        height: 100vh;
+        height: 130vh;
     }
     .page4 {
-        height: 100vh;
+        height: 130vh;
     }
 
     .page1 h1 {
@@ -449,6 +449,19 @@ label div:last-child {
         border: none;
     }
     .page4-description {
+        width: 90vw;
+    }
+
+    .projects-wrapper {
+        flex-direction: column;
+    }
+
+    .projects-wrapper video {
+        height: auto;
+        width: 90vw;
+    }
+
+    .project-info {
         width: 90vw;
     }
 }
