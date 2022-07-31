@@ -22,6 +22,7 @@ export default function Home() {
     const refPage2 = useRef(null);
     const refPage3 = useRef(null);
     const refPage4 = useRef(null);
+    const [paused, setPaused] = useState(true);
     const [playerStance, setPlayerStance] = useState(null);
     const playerStanding = "https://i.ibb.co/c28xNqL/standing-Joe.png";
     const playerSitting = "https://i.ibb.co/3snYN5k/sitting-Joe.png";
@@ -95,19 +96,32 @@ export default function Home() {
         if (userX.x > 100) {
             setDisplaySpeechbubble("none");
         }
-        if (userX.x - page1X.x > -200 && userX.x - page1X.x < 100) {
+        if (userX.x - page1X.x > -200 && userX.x - page1X.x < 100 && paused) {
             setBubbleSrc(bubble1);
             setDisplaySpeechbubble("flex");
             return;
-        } else if (userX.x - page2X.x > -200 && userX.x - page2X.x < 300) {
+        } else if (
+            userX.x - page2X.x > -200 &&
+            userX.x - page2X.x < 300 &&
+            paused
+        ) {
+            console.log("PLAYING", paused);
             setBubbleSrc(bubble2);
             setDisplaySpeechbubble("flex");
             return;
-        } else if (userX.x - page3X.x > -200 && userX.x - page3X.x < 300) {
+        } else if (
+            userX.x - page3X.x > -200 &&
+            userX.x - page3X.x < 300 &&
+            paused
+        ) {
             setBubbleSrc(bubble3);
             setDisplaySpeechbubble("flex");
             return;
-        } else if (userX.x - page4X.x > -200 && userX.x - page4X.x < 300) {
+        } else if (
+            userX.x - page4X.x > -200 &&
+            userX.x - page4X.x < 300 &&
+            paused
+        ) {
             setBubbleSrc(bubble4);
             setDisplaySpeechbubble("flex");
             return;
@@ -178,10 +192,13 @@ export default function Home() {
 
     // Video Playing functions
     const onClickPlay = () => {
+        setPaused(!paused);
+        setDisplaySpeechbubble("none");
         setPlayerStance(playerSitting);
     };
 
     const onClickPause = () => {
+        setPaused(!paused);
         setPlayerStance(playerStanding);
     };
 

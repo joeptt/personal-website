@@ -1,4 +1,4 @@
-useEffect(() => {
+/* useEffect(() => {
     setPlayerStance(playerStanding);
 }, [playerStanding]);
 
@@ -45,3 +45,4 @@ const getStanceImages = useCallback(async () => {
         console.log(error);
     }
 }, []);
+ */
