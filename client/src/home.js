@@ -24,7 +24,7 @@ export default function Home() {
     const refPage3 = useRef(null);
     const refPage4 = useRef(null);
     const [playerStance, setPlayerStance] = useState(null);
-    const [isPlaying, setIsPlaying] = useState(false);
+
     const playerStanding = "https://i.ibb.co/c28xNqL/standing-Joe.png";
     const playerSitting = "https://i.ibb.co/3snYN5k/sitting-Joe.png";
     const playerWalkingRight1 =
@@ -184,7 +184,7 @@ export default function Home() {
     // Video Playing functions
     const onClickPlay = () => {
         clearInterval(intervalRef.current);
-        setIsPlaying(true);
+
         setDisplaySpeechbubble("none");
         setPlayerStance(playerSitting);
     };
@@ -194,14 +194,10 @@ export default function Home() {
             checkForBuilding();
         }, 100);
         console.log("hit pause");
-        setIsPlaying(false);
+
         setPlayerStance(playerStanding);
     };
 
-    const onClickMoreToCome = () => {
-        setBackgroundPositionX(0);
-        setPositionX(10);
-    };
     return (
         <>
             <div
@@ -231,7 +227,7 @@ export default function Home() {
                     />
                 </div>
                 <div className="page5">
-                    <LastPage onClickMoreToCome={onClickMoreToCome} />
+                    <LastPage />
                 </div>
             </div>
             <Player

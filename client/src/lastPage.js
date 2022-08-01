@@ -1,12 +1,12 @@
-export default function LastPage({ onClickMoreToCome }) {
+export default function LastPage() {
     return (
         <div>
-            <h1 onClick={onClickMoreToCome}>more to come</h1>
+            <h1>more to come</h1>
             <div className="arrows">
-                <h1 onClick={onClickMoreToCome}>→</h1>
-                <h1 onClick={onClickMoreToCome}>→</h1>
-                <h1 onClick={onClickMoreToCome}>→</h1>
-                <h1 onClick={onClickMoreToCome}>→</h1>
+                <h1>→</h1>
+                <h1>→</h1>
+                <h1>→</h1>
+                <h1>→</h1>
             </div>
         </div>
     );
