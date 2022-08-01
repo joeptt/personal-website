@@ -22,8 +22,8 @@ export default function Home() {
     const refPage2 = useRef(null);
     const refPage3 = useRef(null);
     const refPage4 = useRef(null);
-    const [paused, setPaused] = useState(true);
     const [playerStance, setPlayerStance] = useState(null);
+    const [isPlaying, setIsPlaying] = useState(false);
     const playerStanding = "https://i.ibb.co/c28xNqL/standing-Joe.png";
     const playerSitting = "https://i.ibb.co/3snYN5k/sitting-Joe.png";
     const playerWalkingRight1 =
@@ -37,12 +37,15 @@ export default function Home() {
     const speed = 3;
     const backGroundSpeed = 60;
     const timerRef = useRef(-1);
+    const intervalRef = useRef(-1);
 
     useEffect(() => {
         document.body.classList.add("overflow-body");
 
         setPlayerStance(playerStanding);
-        setInterval(checkForBuilding, 100);
+        intervalRef.current = setInterval(() => {
+            checkForBuilding();
+        }, 100);
         window.addEventListener("keydown", (event) => {
             clearTimeout(timerRef.current);
             moveUser(event);
@@ -96,32 +99,20 @@ export default function Home() {
         if (userX.x > 100) {
             setDisplaySpeechbubble("none");
         }
-        if (userX.x - page1X.x > -200 && userX.x - page1X.x < 100 && paused) {
+        if (userX.x - page1X.x > -200 && userX.x - page1X.x < 100) {
             setBubbleSrc(bubble1);
             setDisplaySpeechbubble("flex");
             return;
-        } else if (
-            userX.x - page2X.x > -200 &&
-            userX.x - page2X.x < 300 &&
-            paused
-        ) {
-            console.log("PLAYING", paused);
+        } else if (userX.x - page2X.x > -200 && userX.x - page2X.x < 300) {
+            console.log(isPlaying);
             setBubbleSrc(bubble2);
             setDisplaySpeechbubble("flex");
             return;
-        } else if (
-            userX.x - page3X.x > -200 &&
-            userX.x - page3X.x < 300 &&
-            paused
-        ) {
+        } else if (userX.x - page3X.x > -200 && userX.x - page3X.x < 300) {
             setBubbleSrc(bubble3);
             setDisplaySpeechbubble("flex");
             return;
-        } else if (
-            userX.x - page4X.x > -200 &&
-            userX.x - page4X.x < 300 &&
-            paused
-        ) {
+        } else if (userX.x - page4X.x > -200 && userX.x - page4X.x < 300) {
             setBubbleSrc(bubble4);
             setDisplaySpeechbubble("flex");
             return;
@@ -192,13 +183,18 @@ export default function Home() {
 
     // Video Playing functions
     const onClickPlay = () => {
-        setPaused(!paused);
+        clearInterval(intervalRef.current);
+        setIsPlaying(true);
         setDisplaySpeechbubble("none");
         setPlayerStance(playerSitting);
     };
 
     const onClickPause = () => {
-        setPaused(!paused);
+        intervalRef.current = setInterval(() => {
+            checkForBuilding();
+        }, 100);
+        console.log("hit pause");
+        setIsPlaying(false);
         setPlayerStance(playerStanding);
     };
 
