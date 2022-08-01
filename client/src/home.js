@@ -5,6 +5,7 @@ import Facebook from "./facebook";
 import Blitzdraw from "./blitzdraw";
 import Hisham from "./hisham";
 import Player from "./player";
+import LastPage from "./lastPage";
 import BIRDS from "vanta/dist/vanta.birds.min";
 
 export default function Home() {
@@ -104,7 +105,6 @@ export default function Home() {
             setDisplaySpeechbubble("flex");
             return;
         } else if (userX.x - page2X.x > -200 && userX.x - page2X.x < 300) {
-            console.log(isPlaying);
             setBubbleSrc(bubble2);
             setDisplaySpeechbubble("flex");
             return;
@@ -198,6 +198,10 @@ export default function Home() {
         setPlayerStance(playerStanding);
     };
 
+    const onClickMoreToCome = () => {
+        setBackgroundPositionX(0);
+        setPositionX(10);
+    };
     return (
         <>
             <div
@@ -225,6 +229,9 @@ export default function Home() {
                         onClickPlay={onClickPlay}
                         onClickPause={onClickPause}
                     />
+                </div>
+                <div className="page5">
+                    <LastPage onClickMoreToCome={onClickMoreToCome} />
                 </div>
             </div>
             <Player

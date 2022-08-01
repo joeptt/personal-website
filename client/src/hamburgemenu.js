@@ -41,17 +41,17 @@ export default function Hamburgermenu() {
                         >
                             <img
                                 className="ig-linkedIn-icons"
-                                src="https://i.ibb.co/Rg6gCcK/Pngtree-linkedin-icon-3584907.png"
+                                src="https://i.ibb.co/NVNB5JQ/linked-In-Final.png"
                             ></img>
                         </a>
                         <a
-                            href="https://www.instagram.com/joeptt/"
+                            href="https://github.com/joeptt"
                             target="_blank"
                             rel="noreferrer"
                         >
                             <img
-                                className="ig-linkedIn-icons"
-                                src="https://i.ibb.co/S6VLgmz/Pngtree-instagram-icon-instagram-logo-3584911.png"
+                                className="ig-linkedIn-icons github-icon"
+                                src="https://i.ibb.co/BTG0xV6/git-Hub-Final.png"
                             ></img>
                         </a>
                     </div>
