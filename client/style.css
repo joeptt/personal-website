@@ -431,6 +431,35 @@ label div:last-child {
     overflow: scroll !important;
 }
 
+/* RESUME */
+
+.resume-page {
+    height: 100vh;
+    width: 100vw;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.resume-page h3 {
+    color: white;
+    font-family: "Noto Sans Display", sans-serif;
+    cursor: pointer;
+}
+
+.resume-page a {
+    text-decoration: none;
+}
+.resume-page h3:hover {
+    color: rgba(0, 221, 255, 0.6);
+}
+
+.imgCV {
+    height: 90%;
+    border-radius: 5px;
+}
+
 /* Blitz Draw on Projects Page */
 .projects-wrapper {
     height: 100vh;
@@ -597,5 +626,10 @@ label div:last-child {
 
     .page5 {
         display: none;
+    }
+
+    .imgCV {
+        height: 60%;
+        border-radius: 5px;
     }
 }

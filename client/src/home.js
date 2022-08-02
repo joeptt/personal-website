@@ -8,7 +8,7 @@ import Player from "./player";
 import LastPage from "./lastPage";
 import BIRDS from "vanta/dist/vanta.birds.min";
 
-export default function Home() {
+export default function Home({ intervalRef }) {
     const bubble1 = "https://i.ibb.co/CthMHXd/first-speech.png";
     const bubble2 = "https://i.ibb.co/BTLt769/second-speech.png";
     const bubble3 = "https://i.ibb.co/LCjqyQc/third-speech.png";
@@ -38,7 +38,6 @@ export default function Home() {
     const speed = 3;
     const backGroundSpeed = 60;
     const timerRef = useRef(-1);
-    const intervalRef = useRef(-1);
 
     useEffect(() => {
         document.body.classList.add("overflow-body");

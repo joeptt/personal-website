@@ -1,5 +1,5 @@
 import { BrowserRouter, Route } from "react-router-dom";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import Home from "./home";
 import Projects from "./projects";
 import Resume from "./resume";
@@ -7,6 +7,7 @@ import Spinner from "./spinner";
 
 export default function App() {
     const [isLoading, setIsLoading] = useState(true);
+    const intervalRef = useRef(-1);
 
     useEffect(() => {
         const imgs = [
@@ -42,13 +43,13 @@ export default function App() {
     return (
         <BrowserRouter>
             <Route exact path="/">
-                {isLoading ? <Spinner /> : <Home />}
+                {isLoading ? <Spinner /> : <Home intervalRef={intervalRef} />}
             </Route>
             <Route exact path="/projects">
-                <Projects />
+                <Projects intervalRef={intervalRef} />
             </Route>
             <Route exact path="/resume">
-                <Resume />
+                <Resume intervalRef={intervalRef} />
             </Route>
         </BrowserRouter>
     );

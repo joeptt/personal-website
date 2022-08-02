@@ -12,7 +12,7 @@ import { client } from "./client";
 
 const FadeUp = batch(Fade(), Move());
 
-export default function Projects() {
+export default function Projects({ intervalRef }) {
     const [fbVideo, setFbVideo] = useState();
     const [drawVideo, setDrawVideo] = useState();
     const [hishamVideo, setHishamVideo] = useState();
@@ -106,6 +106,7 @@ export default function Projects() {
 
     useEffect(() => {
         document.body.classList.remove("overflow-body");
+        clearInterval(intervalRef.current);
     }, []);
 
     return (
