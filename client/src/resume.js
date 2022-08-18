@@ -48,7 +48,7 @@ export default function Resume({ intervalRef }) {
                     <>
                         <img
                             className="imgCV"
-                            src="https://i.ibb.co/8s9D63h/imgCV.png"
+                            src="https://i.ibb.co/tD3sZh1/Bildschirmfoto-2022-08-18-um-11-43-22.png"
                         ></img>
                     </>
                 )}
